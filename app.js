@@ -70,7 +70,12 @@ if (command === 'add'){
 
 // ------------ Begin - Updating -----------------
 else if (command === 'update'){
-
+ var info = DataFile.updateData(argv.customerID,argv.customerName,argv.customerEmail,argv.customerPhone);
+    if (info){
+      DataFile.logData(info); 
+    } else{
+      console.log("Data updated");
+    }
 }
 // ------------ End - Updating -----------------
 
