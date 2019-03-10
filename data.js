@@ -24,7 +24,7 @@ var addData = (customerID,customerName,customerEmail,customerPhone) => {
     var info = {customerID,customerName,customerEmail,customerPhone}
 
     var duplicateData =  data.filter((info) => { 
-	// ty using customer ID, we check if the data already exists.
+	// By using customer ID, we check if the data already exists.
       return info.customerID === customerID;
     });
 
