@@ -1,5 +1,13 @@
 const fs =  require('fs');
 
+
+// ------------ Begin - Converting objects into JSON using JSON.stringify -----------------
+var saveData = (data) => {
+  fs.writeFileSync('customerData.json',JSON.stringify(data));
+};
+// ------------ End - Converting objects into JSON using JSON.stringify -----------------
+
+// ------------ Begin - Converting JSON back into an object using JSON.parse -----------------
 var fetchData = () => {
   try {     
     var notesString = fs.readFileSync('customerData.json')
@@ -8,11 +16,7 @@ var fetchData = () => {
     return [];
   }
 };
-//JSON.stringify to convert objects into JSON.
-//JSON.parse to convert JSON back into an object.
-var saveData = (data) => {
-  fs.writeFileSync('customerData.json',JSON.stringify(data));
-};
+// ------------ End - Converting JSON back into an object using JSON.parse -----------------
 
 // ------------ Begin - Adding -----------------
 var addData = (customerID,customerName,customerEmail,customerPhone) => {   
@@ -20,7 +24,7 @@ var addData = (customerID,customerName,customerEmail,customerPhone) => {
     var info = {customerID,customerName,customerEmail,customerPhone}
 
     var duplicateData =  data.filter((info) => { 
-	// to check if info already exists
+	// ty using customer ID, we check if the data already exists.
       return info.customerID === customerID;
     });
 
@@ -76,7 +80,7 @@ var removeData = (customerID) => {
 
 // ------------ Begin - Log -----------------
   var logData = (info) => { 
-  console.log('-- Customer Information -- ');
+  console.log('\n-- Customer Information -- \n');
   console.log(`ID: ${info.customerID}`);
   console.log(`Name: ${info.customerName}`);
   console.log(`Email: ${info.customerEmail}`);
@@ -84,6 +88,8 @@ var removeData = (customerID) => {
 };
 // ------------ End - Log -----------------
 
+// ------------ Begin - Define the functions -----------------
 module.exports = {
   addData,logData, readData, getAll, removeData, updateData
 };
+// ------------ End - Define the functions -----------------
